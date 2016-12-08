@@ -184,7 +184,7 @@ void calcFingerprint(const ROMol &mol, unsigned int radius,
                      const std::vector<uint32_t> *fromAtoms, bool useChirality,
                      bool useBondTypes, bool useCounts,
                      bool onlyNonzeroInvariants, BitInfoMap *atomsSettingBits,
-                     T &res, uint32_t rnd) {
+                     T &res, uint32_t rnd = 0) {
   unsigned int nAtoms = mol.getNumAtoms();
   bool owner = false;
   if (!invariants) {
