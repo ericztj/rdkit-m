@@ -4,4 +4,3 @@ rdkit_python_extension(rdMolDescriptors rdMolDescriptors.cpp
 LINK_LIBRARIES Descriptors PartialCharges Fingerprints FileParsers SmilesParse Subgraphs
 SubstructMatch MolTransforms GraphMol EigenSolvers DataStructs RDGeneral RDGeometryLib RDBoost )
 
-add_pytest(pyMolDescriptors ${CMAKE_CURRENT_SOURCE_DIR}/testMolDescriptors.py)
