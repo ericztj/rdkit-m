@@ -184,7 +184,7 @@ void calcFingerprint(const ROMol &mol, unsigned int radius,
                      const std::vector<uint32_t> *fromAtoms, bool useChirality,
                      bool useBondTypes, bool useCounts,
                      bool onlyNonzeroInvariants, BitInfoMap *atomsSettingBits,
-                     T &res) {
+                     T &res, uint32_t rnd) {
   unsigned int nAtoms = mol.getNumAtoms();
   bool owner = false;
   if (!invariants) {
@@ -291,7 +291,8 @@ void calcFingerprint(const ROMol &mol, unsigned int radius,
         // and now calculate the new invariant and test if the atom is newly
         // "chiral"
         boost::uint32_t invar = layer;
-        gboost::hash_combine(invar, (*invariants)[atomIdx]);
+	boost::uint32_t seed = invar + rnd;
+        gboost::hash_combine(seed, (*invariants)[atomIdx]);
         bool looksChiral = (tAtom->getChiralTag() != Atom::CHI_UNSPECIFIED);
         for (std::vector<std::pair<int32_t, uint32_t> >::const_iterator it =
                  nbrs.begin();
@@ -412,7 +413,8 @@ ExplicitBitVect *getFingerprintAsBitVect(const ROMol &mol, unsigned int radius,
                                          const std::vector<uint32_t> *fromAtoms,
                                          bool useChirality, bool useBondTypes,
                                          bool onlyNonzeroInvariants,
-                                         BitInfoMap *atomsSettingBits) {
+                                         BitInfoMap *atomsSettingBits,
+					 uint32_t rnd) {
   ExplicitBitVect *res = new ExplicitBitVect(nBits);
   calcFingerprint(mol, radius, invariants, fromAtoms, useChirality,
                   useBondTypes, false, onlyNonzeroInvariants, atomsSettingBits,

@@ -193,7 +193,8 @@ ExplicitBitVect *getFingerprintAsBitVect(
     std::vector<boost::uint32_t> *invariants = 0,
     const std::vector<boost::uint32_t> *fromAtoms = 0,
     bool useChirality = false, bool useBondTypes = true,
-    bool onlyNonzeroInvariants = false, BitInfoMap *atomsSettingBits = 0);
+    bool onlyNonzeroInvariants = false, BitInfoMap *atomsSettingBits = 0,
+    uint32_t rnd = 0);
 
 //! returns the connectivity invariants for a molecule
 /*!
